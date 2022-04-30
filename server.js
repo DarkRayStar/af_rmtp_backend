@@ -25,10 +25,12 @@ connection.once('open', () => {
 const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
 const adminFileUploadRouter = require('./routes/adminFile');
+const adminSubmissionRouter = require('./routes/submissionType');
 
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminFileUploadRouter);
+app.use('/admin/submissionType', adminSubmissionRouter);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(fileRoute);
