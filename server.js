@@ -26,6 +26,7 @@ const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
 const adminFileUploadRouter = require('./routes/adminFile');
 const adminSubmissionRouter = require('./routes/submissionType');
+const groupRouter = require('./routes/groups');
 
 const researchTopicRouter = require('./routes/supervisor-routes/researchTopic');
 
@@ -33,6 +34,7 @@ app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminFileUploadRouter);
 app.use('/admin/submissionType', adminSubmissionRouter);
+app.use('/groups', groupRouter);
 
 app.use('/supervisor/topic', researchTopicRouter);
 
