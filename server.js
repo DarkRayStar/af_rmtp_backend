@@ -14,7 +14,7 @@ app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
-'useNewUrlParser': true
+  'useNewUrlParser': true
 }
 );
 const connection = mongoose.connection;
@@ -27,10 +27,14 @@ const usersRouter = require('./routes/users');
 const adminFileUploadRouter = require('./routes/adminFile');
 const adminSubmissionRouter = require('./routes/submissionType');
 
+const researchTopicRouter = require('./routes/supervisor-routes/researchTopic');
+
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminFileUploadRouter);
 app.use('/admin/submissionType', adminSubmissionRouter);
+
+app.use('/supervisor/topic', researchTopicRouter);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(fileRoute);
@@ -41,5 +45,5 @@ app.get('*', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
+  console.log(`Server is running on port: ${port}`);
 });
