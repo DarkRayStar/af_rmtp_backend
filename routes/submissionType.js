@@ -42,6 +42,15 @@ router.get('/getSubmission/:id', async (req, res) => {
   }
 });
 
+router.get('/getSubmissionId/:submissionName', async (req, res) => {
+  try {
+    const file = await Submission.find({"submissionName":req.params.submissionName});
+    res.send(file);
+  } catch (error) {
+    res.status(400).send('Error while getting Submission Type data. Try again later.');
+  }
+});
+
 router.route('/update/:id').post((req, res) => {
   Submission.findById(req.params.id)
     .then(file => {
