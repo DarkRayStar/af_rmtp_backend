@@ -26,7 +26,7 @@ const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
 const adminFileUploadRouter = require('./routes/adminFile');
 const adminSubmissionRouter = require('./routes/submissionType');
-const groupRouter = require('./routes/groups');
+const groupRouter = require('./routes/student-routes/groups');
 
 const researchTopicRouter = require('./routes/supervisor-routes/researchTopic');
 
