@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let Submission = require('../models/submissionType.model');
+let Submission = require('../../models/admin-models/submissionType.model');
 
 router.route('/').get((req, res) => {
   Submission.find()
