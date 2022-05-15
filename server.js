@@ -30,6 +30,10 @@ const groupRouter = require('./routes/groups');
 
 const researchTopicRouter = require('./routes/supervisor-routes/researchTopic');
 
+const studentDetailRouter = require('./routes/userManagement-routes/studentDetail');
+const staffDetailRouter = require('./routes/userManagement-routes/staffDetail');
+const studentRegistrationRouter = require('./routes/userManagement-routes/registrationStudent');
+
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminFileUploadRouter);
@@ -37,6 +41,10 @@ app.use('/admin/submissionType', adminSubmissionRouter);
 app.use('/groups', groupRouter);
 
 app.use('/supervisor/topic', researchTopicRouter);
+
+app.use('/studentDetails', studentDetailRouter);
+app.use('/employeeDetails', staffDetailRouter);
+app.use('/studentRegistration', studentRegistrationRouter);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(fileRoute);
