@@ -1,6 +1,6 @@
 const path = require('path');
 const multer = require('multer');
-const File = require('../models/adminFile');
+const File = require('../../models/admin-models/adminFile');
 const Router = require('express').Router();
 const ObjectId = require('mongodb').ObjectID;
 
