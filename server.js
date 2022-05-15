@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const fileRoute = require('./routes/adminFile');
+const fileRoute = require('./routes/admin-routes/adminFile');
 const path = require('path');
 
 require('dotenv').config();
@@ -24,10 +24,10 @@ connection.once('open', () => {
 
 const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
-const adminFileUploadRouter = require('./routes/adminFile');
-const adminSubmissionRouter = require('./routes/submissionType');
-const groupRouter = require('./routes/student-routes/groups');
+const adminFileUploadRouter = require('./routes/admin-routes/adminFile');
+const adminSubmissionRouter = require('./routes/admin-routes/submissionType');
 
+const groupRouter = require('./routes/student-routes/groups');
 const researchTopicRouter = require('./routes/supervisor-routes/researchTopic');
 
 app.use('/exercises', exercisesRouter);
