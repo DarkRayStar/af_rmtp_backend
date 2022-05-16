@@ -57,13 +57,6 @@ router.route('/update/:id').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-//get non-grouped members
-// router.route('/').get((req, res) => {
-//   nonGroupMember.find()
-//         .then(nonGroupMembers => res.json(nonGroupMembers))
-//         .catch(err => res.status(400).json('Error: ' + err));
-// });
 
-//test
 
 module.exports = router;
