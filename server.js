@@ -32,7 +32,12 @@ const researchTopicRouter = require('./routes/supervisor-routes/researchTopic');
 
 const studentDetailRouter = require('./routes/userManagement-routes/studentDetail');
 const staffDetailRouter = require('./routes/userManagement-routes/staffDetail');
-const studentRegistrationRouter = require('./routes/userManagement-routes/registrationStudent');
+
+const studentRegistrationRoute = require('./routes/userManagement-routes/studentRegistrations');
+const studentLoginRoute = require('./routes/userManagement-routes/studentLogins');
+
+const employeeRegistrationRoute = require('./routes/userManagement-routes/employeeRegistrations');
+const employeeLoginRoute = require('./routes/userManagement-routes/employeeLogins');
 
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
@@ -44,7 +49,12 @@ app.use('/supervisor/topic', researchTopicRouter);
 
 app.use('/studentDetails', studentDetailRouter);
 app.use('/employeeDetails', staffDetailRouter);
-app.use('/studentRegistration', studentRegistrationRouter);
+
+app.use("/api/users", studentRegistrationRoute);
+app.use("/api/auth", studentLoginRoute);
+
+app.use("/api/employees", employeeRegistrationRoute);
+app.use("/api/loginemployee", employeeLoginRoute);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(fileRoute);
