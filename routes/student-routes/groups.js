@@ -1,10 +1,15 @@
 const router = require('express').Router();
 let Group = require('../../models/student-models/group.model');
+let nonGroupMember = require('../userManagement-routes/registrationStudent');
 
 router.route('/').get((req, res) => {
   Group.find()
     .then(groups => res.json(groups))
     .catch(err => res.status(400).json('Error: ' + err));
+
+  nonGroupMember.find()
+      .then(nonGroupMembers => res.json(nonGroupMembers))
+      .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/add').post((req, res) => {
@@ -51,5 +56,12 @@ router.route('/update/:id').post((req, res) => {
     })
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+//get non-grouped members
+// router.route('/').get((req, res) => {
+//   nonGroupMember.find()
+//         .then(nonGroupMembers => res.json(nonGroupMembers))
+//         .catch(err => res.status(400).json('Error: ' + err));
+// });
 
 module.exports = router;
