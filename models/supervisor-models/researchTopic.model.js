@@ -6,6 +6,8 @@ const researchTopicSchema = new Schema({
   topic: { type: String, required: true },
   groupName: { type: String, required: true },
   state: { type: String },
+  researchField: { type: String, required: true }
+  //marks need to add
 }, {
   timestamps: true,
 });

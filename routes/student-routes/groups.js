@@ -27,7 +27,7 @@ router.route('/add').post((req, res) => {
   // const filter2 = { stdID: member03 };
   // const filter3 = { stdID: member04 };
   // const update = { studentGrpID: groupname};
-  
+
 
   // //testing to find one by member name
   // nonGroupMember.findOneAndUpdate(filter1, update);
@@ -48,8 +48,8 @@ router.route('/add').post((req, res) => {
   });
 
   newgroup.save()
-  .then(() => res.json('Group added!'))
-  .catch(err => res.status(400).json('Error: ' + err));
+    .then(() => res.json('Group added!'))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/:id').get((req, res) => {
@@ -65,20 +65,25 @@ router.route('/:id').delete((req, res) => {
 });
 
 //Did not used in front end
-// router.route('/update/:id').post((req, res) => {
-//   Group.findById(req.params.id)
-//     .then(group => {
-//       group.groupname = req.body.groupname;
-//       group.groupleader = req.body.groupleader;
-//       group.supervisor = req.body.supervisor;
-//       group.cosupervisor = req.body.cosupervisor;
+router.route('/update/:id').post((req, res) => {
+  Group.findById(req.params.id)
+    .then(group => {
+      group.groupname = req.body.groupname;
+      group.groupleader = req.body.groupleader;
+      group.member02 = req.body.member02;
+      group.member03 = req.body.member03;
+      group.member04 = req.body.member04;
+      group.supervisor = req.body.supervisor;
+      group.cosupervisor = req.body.cosupervisor;
+      group.researchTopic = req.body.researchTopic;
+      group.status = req.body.status;
 
-//       group.save()
-//         .then(() => res.json('Group updated!'))
-//         .catch(err => res.status(400).json('Error: ' + err));
-//     })
-//     .catch(err => res.status(400).json('Error: ' + err));
-// });
+      group.save()
+        .then(() => res.json('Group updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 // router.route('/update/member/:id').post((req, res) => {
 //   Group.findById(req.params.id)
