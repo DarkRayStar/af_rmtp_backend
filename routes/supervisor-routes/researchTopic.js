@@ -10,12 +10,14 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
     const topic = req.body.topic;
     const groupName = req.body.groupName;
-    const state = (req.body.state);
+    const state = req.body.state;
+    const researchField = req.body.researchField;
 
     const newResearchTopic = new ResearchTopic({
         topic,
         groupName,
         state,
+        researchField
     });
 
     newResearchTopic.save()
@@ -40,7 +42,8 @@ router.route('/update/:id').post((req, res) => {
         .then(researchTopics => {
             researchTopics.topic = req.body.topic;
             researchTopics.groupName = req.body.groupName;
-            researchTopics.state = (req.body.state);
+            researchTopics.state = req.body.state;
+            researchField.state = req.body.researchField;
 
             researchTopics.save()
                 .then(() => res.json('Topic updated!'))
