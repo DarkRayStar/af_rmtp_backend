@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const researchTopicSchema = new Schema({
-  topic: { type: String, required: true },
-  groupName: { type: String, required: true },
+  topic: { type: String },
+  groupName: { type: String },
   state: { type: String },
-  researchField: { type: String, required: true }
+  researchField: { type: String }
   //marks need to add
 }, {
   timestamps: true,

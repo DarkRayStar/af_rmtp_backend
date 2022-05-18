@@ -8,9 +8,9 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-    const topic = req.body.topic;
-    const groupName = req.body.groupName;
-    const state = req.body.state;
+    const topic = req.body.researchTopic;
+    const groupName = req.body.groupname;
+    const state = req.body.status;
     const researchField = req.body.researchField;
 
     const newResearchTopic = new ResearchTopic({
