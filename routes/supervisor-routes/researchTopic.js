@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let ResearchTopic = require('../../models/supervisor-models/researchTopic.model');
+let ResearchTopic = require('../../models/supervisor-models/researchTopic.model')
 
 router.route('/').get((req, res) => {
     ResearchTopic.find()
@@ -8,16 +8,16 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-    const topic = req.body.researchTopic;
+    const topic = req.body.topic;
     const groupName = req.body.groupname;
     const state = req.body.status;
-    const researchField = req.body.researchField;
+    // const researchField = req.body.researchField;
 
     const newResearchTopic = new ResearchTopic({
         topic,
         groupName,
         state,
-        researchField
+        // researchField
     });
 
     newResearchTopic.save()
@@ -43,7 +43,7 @@ router.route('/update/:id').post((req, res) => {
             researchTopics.topic = req.body.topic;
             researchTopics.groupName = req.body.groupName;
             researchTopics.state = req.body.state;
-            researchField.state = req.body.researchField;
+            // researchField.state = req.body.researchField;
 
             researchTopics.save()
                 .then(() => res.json('Topic updated!'))
