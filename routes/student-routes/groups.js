@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let Group = require('../../models/student-models/group.model');
+let Topic = require('../../models/supervisor-models/researchTopic.model');
 // let nonGroupMember = require('../../models/userManagement-models/studentRegistration.model');
 
 //get All
@@ -22,7 +23,7 @@ router.route('/add').post((req, res) => {
   const member04 = req.body.member04;
   const supervisor = req.body.supervisor;
   const cosupervisor = req.body.supervisor;
-  const researchTopic = req.body.researchTopic;
+  const topic = req.body.topic;
   const status = req.body.status;
 
   // const filter1 = { stdID: member02 };
@@ -45,7 +46,7 @@ router.route('/add').post((req, res) => {
     member04,
     supervisor,
     cosupervisor,
-    researchTopic,
+    topic,
     status
   });
 
@@ -99,23 +100,23 @@ router.route('/:id').delete((req, res) => {
 //     .catch(err => res.status(400).json('Error: ' + err));
 // });
 
-// Did not used in front end
-// router.route('/update/researchTopic').post((req, res) => {
+// update topic
+router.route('/update/topic').post((req, res) => {
 
-//   const groupname = req.body.groupname;
-//   const researchTopic = req.body.researchTopic;
+  const groupname = req.body.groupname;
+  const topic = req.body.topic;
 
-//   const filter = { groupname: groupname};
-//   const update = { researchTopic: researchTopic };
+  const filter = { groupName: groupname};
+  const update = { topic: topic };
 
-//   Group.findOneAndUpdate(filter, {$set:{researchTopic:researchTopic }}, {new: true}, (err, doc) => {
-//     if (err) {
-//         console.log("Something wrong when updating data!");
-//     }
+  Topic.findOneAndUpdate(filter, {$set:{topic:topic }}, {new: true}, (err, doc) => {
+    if (err) {
+        console.log("Something wrong when updating data!");
+    }
 
-//     console.log(doc);
-//   });
-// });
+    console.log(doc);
+  });
+});
 
 //add co-supervisor
 router.route('/update/cosupervisor').post((req, res) => {
@@ -131,7 +132,7 @@ router.route('/update/cosupervisor').post((req, res) => {
         console.log("Something wrong when updating data!");
     }
 
-    console.log(doc);
+    // console.log(doc);
 });
 
 });
@@ -150,7 +151,7 @@ router.route('/update/supervisor').post((req, res) => {
         console.log("Something wrong when updating data!");
     }
 
-    console.log(doc);
+    // console.log(doc);
 });
 
 });
