@@ -1,13 +1,13 @@
 const path = require('path');
 const multer = require('multer');
-const File = require('../../models/admin-models/adminFile');
+const MarkingScheme = require('../../models/admin-models/markingScheme');
 const Router = require('express').Router();
 
 
 const upload = multer({
   storage: multer.diskStorage({
     destination(req, file, cb) {
-      cb(null, './AdminFiles');
+      cb(null, './MarkingSchemes');
     },
     filename(req, file, cb) {
       cb(null, `${new Date().getTime()}_${file.originalname}`);
@@ -35,7 +35,7 @@ Router.post(
     try {
       const { title, description } = req.body;
       const { path, mimetype } = req.file;
-      const file = new File({
+      const file = new MarkingScheme({
         title,
         description,
         file_path: path,
@@ -56,7 +56,7 @@ Router.post(
 
 Router.get('/getAllFiles', async (req, res) => {
   try {
-    const files = await File.find({});
+    const files = await MarkingScheme.find({});
     const sortedByCreationDate = files.sort(
       (a, b) => b.createdAt - a.createdAt
     );
@@ -68,7 +68,7 @@ Router.get('/getAllFiles', async (req, res) => {
 
 Router.get('/getFile/:id', async (req, res) => {
   try {
-    const file = await File.findById(req.params.id);
+    const file = await MarkingScheme.findById(req.params.id);
     res.send(file);
   } catch (error) {
     res.status(400).send('Error while getting the file. Try again later.');
@@ -76,12 +76,12 @@ Router.get('/getFile/:id', async (req, res) => {
 });
 
 Router.route('/update/:id').post((req, res) => {
-  File.findById(req.params.id)
+  MarkingScheme.findById(req.params.id)
     .then(file => {
       file.title = req.body.title;
       file.description = req.body.description;
       file.save()
-        .then(() => res.json('File updated!'))
+        .then(() => res.json('MarkingScheme updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));
@@ -92,7 +92,7 @@ Router.get('/download/:id', async (req, res) => {
     let downloadDirectory = __dirname;
     downloadDirectory = downloadDirectory.replace('routes\\admin-routes',' ');
     console.log(downloadDirectory);
-    const file = await File.findById(req.params.id);
+    const file = await MarkingScheme.findById(req.params.id);
     res.set({
       'Content-Type': file.file_mimetype
     });
@@ -104,11 +104,11 @@ Router.get('/download/:id', async (req, res) => {
 
 Router.delete('/file-delete/:id', async (req, res) => {
   try {
-    File.findByIdAndDelete(req.params.id)
-    .then(() => res.json('File deleted.'))
+    MarkingScheme.findByIdAndDelete(req.params.id)
+    .then(() => res.json('MarkingScheme deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
   } catch (error) {
-    res.status(400).send('File Deletion Failed');
+    res.status(400).send('MarkingScheme Deletion Failed');
   }
 });
 
