@@ -18,12 +18,15 @@ router.post("/", async (req, res) => {
 			return res.status(400).send({ message: error.details[0].message });
 
 		let user = await User.findOne({ email: req.body.email });
-		if (!user)
+		if (!user){
 			return res
 				.status(409)
 				.send({ message: "User with given email does not exist!" });
-			// return res.json('User with given email already Exist!!').status(400);
 
+			
+			// return res.json('User with given email already Exist!!').status(400);
+		}
+			
 
 		let token = await Token.findOne({ userId: user._id });
 		if (!token) {
@@ -39,6 +42,8 @@ router.post("/", async (req, res) => {
 		res
 			.status(200)
 			.send({ message: "Password reset link sent to your email account" });
+
+
 	} catch (error) {
 		res.status(500).send({ message: "Internal Server Error" });
 	}
