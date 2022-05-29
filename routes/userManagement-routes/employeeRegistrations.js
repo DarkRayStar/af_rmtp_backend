@@ -35,28 +35,28 @@ router.post("/", async (req, res) => {
 	}
 });
 
-// get all student details
+// get all employee details
 router.route('/').get((req, res) => {
 	User.find()
 		.then(empDetails => res.json(empDetails))
 		.catch(err => res.status(400).json('Error: ' + err));
 });
 
-// get studet details by id
+// get employee details by id
 router.route('/:id').get((req, res) => {
 	User.findById(req.params.id)
 		.then(empDetails => res.json(empDetails))
 		.catch(err => res.status(400).json('Error: ' + err));
 });
 
-// delete studet details
+// delete employee details
 router.route('/:id').delete((req, res) => {
 	User.findByIdAndDelete(req.params.id)
 		.then(() => res.json('Employee details are deleted.'))
 		.catch(err => res.status(400).json('Error: ' + err));
 });
 
-// update studet details
+// update employee details
 router.route('/update-employee/:id').post((req, res) => {
 	User.findById(req.params.id)
 		.then(empDetails => {

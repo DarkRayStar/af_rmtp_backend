@@ -1,4 +1,3 @@
-const { auth } = require("google-auth-library");
 const nodemailer = require("nodemailer");
 
 module.exports = async (email, subject, text) => {

@@ -44,21 +44,21 @@ router.route('/').get((req, res) => {
 		.catch(err => res.status(400).json('Error: ' + err));
 });
 
-// get studet details by id
+// get student details by id
 router.route('/:id').get((req, res) => {
 	User.findById(req.params.id)
 		.then(studentDetails => res.json(studentDetails))
 		.catch(err => res.status(400).json('Error: ' + err));
 });
 
-// delete studet details
+// delete student details
 router.route('/:id').delete((req, res) => {
 	User.findByIdAndDelete(req.params.id)
 		.then(() => res.json('Student details are deleted.'))
 		.catch(err => res.status(400).json('Error: ' + err));
 });
 
-// update studet details
+// update student details
 router.route('/update-student/:id').post((req, res) => {
 	User.findById(req.params.id)
 		.then(studentDetails => {
