@@ -37,9 +37,10 @@ const staffDetailRouter = require('./routes/userManagement-routes/staffDetail');
 
 const studentRegistrationRoute = require('./routes/userManagement-routes/studentRegistrations');
 const studentLoginRoute = require('./routes/userManagement-routes/studentLogins');
-
 const employeeRegistrationRoute = require('./routes/userManagement-routes/employeeRegistrations');
 const employeeLoginRoute = require('./routes/userManagement-routes/employeeLogins');
+const studentPasswordResetRoute = require('./routes/userManagement-routes/passwordReset/passwordReset');
+
 
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
@@ -58,9 +59,9 @@ app.use('/employeeDetails', staffDetailRouter);
 
 app.use("/student/registration", studentRegistrationRoute);
 app.use("/student/login", studentLoginRoute);
-
 app.use("/employee/registration", employeeRegistrationRoute);
 app.use("/employee/login", employeeLoginRoute);
+app.use("/student/password-reset" , studentPasswordResetRoute);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(fileRoute);
