@@ -22,6 +22,6 @@ const submissionSchema = new Schema({
   timestamps: true,
 });
 
-const SubmissionType = mongoose.model('Submission', submissionSchema);
+const SubmissionType = mongoose.model('SubmissionType', submissionSchema);
 
 module.exports = SubmissionType;

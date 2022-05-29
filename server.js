@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const fileRoute = require('./routes/admin-routes/adminFile');
 const path = require('path');
 
 require('dotenv').config();
@@ -26,6 +25,8 @@ const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
 const adminFileUploadRouter = require('./routes/admin-routes/adminFile');
 const adminSubmissionRouter = require('./routes/admin-routes/submissionType');
+const fileRoute = require('./routes/admin-routes/adminFile');
+const markingSchemeRouter = require('./routes/admin-routes/markingScheme');
 
 const groupRouter = require('./routes/student-routes/groups');
 const stuSubmissionRouter = require('./routes/student-routes/stuSubmission')
@@ -45,6 +46,8 @@ app.use('/users', usersRouter);
 app.use('/admin', adminFileUploadRouter);
 app.use('/admin/submissionType', adminSubmissionRouter);
 
+app.use('/admin/marking', markingSchemeRouter);
+
 app.use('/groups', groupRouter);
 app.use('/student-submission', stuSubmissionRouter);
 
@@ -53,14 +56,15 @@ app.use('/supervisor/topic', researchTopicRouter);
 app.use('/studentDetails', studentDetailRouter);
 app.use('/employeeDetails', staffDetailRouter);
 
-app.use("/api/users", studentRegistrationRoute);
-app.use("/api/auth", studentLoginRoute);
+app.use("/student/registration", studentRegistrationRoute);
+app.use("/student/login", studentLoginRoute);
 
-app.use("/api/employees", employeeRegistrationRoute);
-app.use("/api/loginemployee", employeeLoginRoute);
+app.use("/employee/registration", employeeRegistrationRoute);
+app.use("/employee/login", employeeLoginRoute);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(fileRoute);
+app.use(markingSchemeRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
