@@ -14,6 +14,7 @@ const groupSchema = new Schema({
   status: { type: String }
 }, {
   timestamps: true,
+  
 });
 
 const Group = mongoose.model('Group', groupSchema);
