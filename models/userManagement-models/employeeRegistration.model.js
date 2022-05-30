@@ -4,7 +4,7 @@ const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
 const userSchema = new mongoose.Schema({
-	empID: { type: String, required: true },
+	empID: { type: String, required: true , unique:true},
 	firstName: { type: String, required: true },
 	lastName: { type: String, required: true },
 	email: { type: String, required: true },
