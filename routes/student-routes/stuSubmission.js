@@ -32,12 +32,12 @@ Router.post('/upload',
     upload.single('file'),
     async (req, res) => {
         try {
-            // const { groupname, submissionType } = req.body;
+            const { groupname, submissionName } = req.body;
             const { path, mimetype } = req.file;
             const file = new StuSubmission({
-                groupname: '1a',
-                submissionType: '2a',
-                feedback: '3a',
+                groupname : groupname,
+                submissionType: submissionName,
+                feedback: 'abc',
                 file_path: path,
                 file_mimetype: mimetype
             });
