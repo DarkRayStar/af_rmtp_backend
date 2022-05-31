@@ -85,6 +85,21 @@ router.route('/:id').delete((req, res) => {
 //     .catch(err => res.status(400).json('Error: ' + err));
 // });
 
+
+//created by Dulshan to be used in panel member allocation
+router.route('/addPanelMember/:id').post((req, res) => {
+  Group.findById(req.params.id)
+    .then(group => {
+      group.panelMember = req.body.panelMember;
+      
+      group.save()
+        .then(() => res.json('Group updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
 // router.route('/update/member/:id').post((req, res) => {
 //   Group.findById(req.params.id)
 //     .then(group => {

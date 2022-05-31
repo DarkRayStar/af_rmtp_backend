@@ -9,7 +9,8 @@ const groupSchema = new Schema({
   member03: { type: String, required: true },
   member04: { type: String, required: true },
   supervisor: { type: String },
-  cosupervisor: { type: String },
+  cosupervisor: { type: String },    
+  panelMember: { type: String },  // Added by Dulshan
   topic: { type: String },
   status: { type: String }
 }, {
