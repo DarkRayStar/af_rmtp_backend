@@ -62,6 +62,58 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//get group by id
+router.post("/loggedUser", async (req, res) => {
+	try {
+
+    const userid = req.body.stdID;
+    // console.log(userid);
+		
+		const user = await Group.findOne({ groupleader: userid });
+		if (!user) {
+			// return res.status(401).send({ message: "Invalid Email or Password" });
+			return res.json('Invalid User').status(401);
+		}
+    // console.log('a',user);
+		if ( user) {
+			res.json({
+			  message: "success",
+			  user,
+			  status:200
+			});
+		  }
+
+	} catch (error) {
+		//res.status(500).send({ message: "Internal Server Error" });
+	}
+});
+
+//get topic by group
+// router.post("/loggedUserGroup", async (req, res) => {
+// 	try {
+
+//     const groupname = req.body.groupname;
+//     // console.log('a',groupname);
+		
+// 		const topic = await Topic.findOne({ groupName: groupname });
+// 		if (!topic) {
+// 			// return res.status(401).send({ message: "Invalid Email or Password" });
+// 			return res.json('Invalid group').status(401);
+// 		}
+//     // console.log('b',topic);
+// 		if ( topic) {
+// 			res.json({
+// 			  message: "success",
+// 			  topic,
+// 			  status:200
+// 			});
+// 		  }
+
+// 	} catch (error) {
+// 		//res.status(500).send({ message: "Internal Server Error" });
+// 	}
+// });
+
 //delete
 router.route('/:id').delete((req, res) => {
   Group.findByIdAndDelete(req.params.id)
