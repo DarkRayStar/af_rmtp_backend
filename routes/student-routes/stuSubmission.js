@@ -37,7 +37,7 @@ Router.post('/upload',
             const file = new StuSubmission({
                 groupname : groupname,
                 submissionType: submissionName,
-                feedback: 'abc',
+                feedback: 'No feedback yet',
                 file_path: path,
                 file_mimetype: mimetype
             });
