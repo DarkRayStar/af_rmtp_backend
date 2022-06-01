@@ -31,6 +31,7 @@ const markingSchemeRouter = require('./routes/admin-routes/markingScheme');
 const groupRouter = require('./routes/student-routes/groups');
 const stuSubmissionRouter = require('./routes/student-routes/stuSubmission')
 const researchTopicRouter = require('./routes/supervisor-routes/researchTopic');
+const chatRouter = require('./routes/supervisor-routes/chat');
 
 const studentDetailRouter = require('./routes/userManagement-routes/studentDetail');
 const staffDetailRouter = require('./routes/userManagement-routes/staffDetail');
@@ -53,6 +54,7 @@ app.use('/groups', groupRouter);
 app.use('/student-submission', stuSubmissionRouter);
 
 app.use('/supervisor/topic', researchTopicRouter);
+app.use('/chat', chatRouter);
 
 app.use('/studentDetails', studentDetailRouter);
 app.use('/employeeDetails', staffDetailRouter);
