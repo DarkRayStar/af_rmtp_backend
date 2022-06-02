@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
 		//check email address valid or not
 		const user = await User.findOne({ email: req.body.email });
 		if (!user) {
-			return res.json('Invalid Email or Password!').status(401);
+			return res.json('Login Failed. Please re-check your credentials.').status(401);
 		}
 
 		//compare Password related to given email
@@ -24,19 +24,19 @@ router.post("/", async (req, res) => {
 		);
 		if (!validPassword) {
 			//return res.status(401).send({ message: "Invalid Email or Password" });
-			return res.json("Invalid Email or Password").status(401);
+			return res.json("Login Failed. Please re-check your credentials.").status(401);
 		}
 
 		//Both password and email are true then display login success message
 		if (validPassword && user) {
 			const token = user.generateAuthToken();
 			res.json({
-			  message: "logged in successfully",
-			  token,
-			  user,
-			  status:200
+				message: "logged in successfully",
+				token,
+				user,
+				status: 200
 			});
-		  }
+		}
 
 	} catch (error) {
 		res.status(500).send({ message: "Internal Server Error" });

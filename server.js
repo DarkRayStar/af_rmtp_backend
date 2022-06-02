@@ -57,8 +57,8 @@ app.use("/student/registration", studentRegistrationRoute);
 app.use("/student/login", studentLoginRoute);
 app.use("/employee/registration", employeeRegistrationRoute);
 app.use("/employee/login", employeeLoginRoute);
-app.use("/student/password-reset" , studentPasswordResetRoute);
-app.use("/employee/password-reset" , employeePasswordResetRoute);
+app.use("/student/password-reset", studentPasswordResetRoute);
+app.use("/employee/password-reset", employeePasswordResetRoute);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(fileRoute);

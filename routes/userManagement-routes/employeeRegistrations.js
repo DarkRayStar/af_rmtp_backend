@@ -67,6 +67,7 @@ router.route('/update-employee/:id').post((req, res) => {
 			empDetails.image = req.body.image;
 			empDetails.password = req.body.password;
 			empDetails.email = req.body.email;
+			empDetails.researchField = req.body.researchField;
 
 			empDetails.save()
 				.then(() => res.json('Employee details are updated!'))

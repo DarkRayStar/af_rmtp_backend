@@ -22,12 +22,12 @@ router.post("/", async (req, res) => {
 
 		//check entered email is a registered or not
 		let user = await User.findOne({ email: req.body.email });
-		if (!user){
+		if (!user) {
 			return res
 				.status(409)
 				.send({ message: "User with given email does not exist!" });
 		}
-			
+
 		//fine token with user ID
 		let token = await Token.findOne({ userId: user._id });
 		//if token will doesn't exist create new token
@@ -116,7 +116,7 @@ router.post("/:id/:token", async (req, res) => {
 
 		//if password reset success display success message
 		res.status(200).send({ message: "Password reset successfully" });
-		
+
 	} catch (error) {
 		res.status(500).send({ message: "Internal Server Error" });
 	}
