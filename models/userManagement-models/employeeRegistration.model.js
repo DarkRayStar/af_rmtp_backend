@@ -22,6 +22,7 @@ userSchema.methods.generateAuthToken = function () {
 
 const User = mongoose.model("employeeRegistration", userSchema);
 
+//validate method for required all fields and password pattern validation
 const validate = (data) => {
 	const schema = Joi.object({
 		empID: Joi.string().required().label("Employee ID"),
