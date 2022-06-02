@@ -35,9 +35,10 @@ Router.post('/upload',
             const { groupname, submissionName } = req.body;
             const { path, mimetype } = req.file;
             const file = new StuSubmission({
-                groupname : groupname,
+                groupname: groupname,
                 submissionType: submissionName,
-                feedback: 'No feedback yet',
+                feedback: 'N/A',
+
                 file_path: path,
                 file_mimetype: mimetype
             });
@@ -53,5 +54,52 @@ Router.post('/upload',
         }
     }
 );
+
+Router.get('/getAllFiles', async (req, res) => {
+    try {
+        const files = await StuSubmission.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send('Error while getting list of files. Try again later.');
+    }
+});
+
+Router.get('/getFeedback/:id', async (req, res) => {
+    try {
+        const file = await StuSubmission.findById(req.params.id);
+        res.send(file);
+    } catch (error) {
+        res.status(400).send('Error while getting the file. Try again later.');
+    }
+});
+
+Router.route('/update/:id').post((req, res) => {
+    StuSubmission.findById(req.params.id)
+        .then(file => {
+            file.feedback = req.body.feedback;
+            file.save()
+                .then(() => res.json('StuSubmission updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+Router.get('/download/:id', async (req, res) => {
+    try {
+        let downloadDirectory = __dirname;
+        downloadDirectory = downloadDirectory.replace('routes\\student-routes', ' ');
+        console.log('DownDirectory', downloadDirectory);
+        const file = await StuSubmission.findById(req.params.id);
+        res.set({
+            'Content-Type': file.file_mimetype
+        });
+        res.sendFile(path.join(downloadDirectory, '..', file.file_path));
+    } catch (error) {
+        res.status(400).send('Error while downloading file. Try again later.');
+    }
+});
 
 module.exports = Router;
