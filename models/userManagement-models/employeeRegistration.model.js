@@ -4,13 +4,14 @@ const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
 const userSchema = new mongoose.Schema({
-	empID: { type: String, required: true , unique:true},
+	empID: { type: String, required: true, unique: true },
 	firstName: { type: String, required: true },
 	lastName: { type: String, required: true },
 	email: { type: String, required: true },
 	empType: { type: String, required: true },
 	password: { type: String, required: true },
 	image: { type: String, required: true },
+	researchField: { type: String, required: false },
 });
 
 userSchema.methods.generateAuthToken = function () {
@@ -32,6 +33,7 @@ const validate = (data) => {
 		empType: Joi.string().required().label("Employee Type"),
 		password: passwordComplexity().required().label("Password"),
 		image: Joi.string().required().label("Image URL"),
+		researchField: Joi.string().label("Research Field"),
 	});
 	return schema.validate(data);
 };
