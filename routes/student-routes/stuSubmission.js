@@ -38,6 +38,7 @@ Router.post('/upload',
                 groupname: groupname,
                 submissionType: submissionName,
                 feedback: 'N/A',
+
                 file_path: path,
                 file_mimetype: mimetype
             });
