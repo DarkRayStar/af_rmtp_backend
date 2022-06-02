@@ -33,9 +33,6 @@ const stuSubmissionRouter = require('./routes/student-routes/stuSubmission')
 const researchTopicRouter = require('./routes/supervisor-routes/researchTopic');
 const chatRouter = require('./routes/supervisor-routes/chat');
 
-const studentDetailRouter = require('./routes/userManagement-routes/studentDetail');
-const staffDetailRouter = require('./routes/userManagement-routes/staffDetail');
-
 const studentRegistrationRoute = require('./routes/userManagement-routes/studentRegistrations');
 const studentLoginRoute = require('./routes/userManagement-routes/studentLogins');
 const employeeRegistrationRoute = require('./routes/userManagement-routes/employeeRegistrations');
@@ -55,9 +52,6 @@ app.use('/student-submission', stuSubmissionRouter);
 
 app.use('/supervisor/topic', researchTopicRouter);
 app.use('/chat', chatRouter);
-
-app.use('/studentDetails', studentDetailRouter);
-app.use('/employeeDetails', staffDetailRouter);
 
 app.use("/student/registration", studentRegistrationRoute);
 app.use("/student/login", studentLoginRoute);

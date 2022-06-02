@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
 	image: { type: String, required: true },
 });
 
+
 userSchema.methods.generateAuthToken = function () {
 	const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
 		expiresIn: "7d",
@@ -22,6 +23,7 @@ userSchema.methods.generateAuthToken = function () {
 
 const User = mongoose.model("studentRegistration", userSchema);
 
+//validate method for required all fields and password pattern validation
 const validate = (data) => {
 	const schema = Joi.object({
         stdID: Joi.string().required().label("Student ID"),
