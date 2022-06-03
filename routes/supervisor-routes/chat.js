@@ -78,4 +78,23 @@ router.route('/update/:id').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
+router.get("/getChat/:id", async (req, res) => {
+    try {
+        const user = await Chat.findOne({ studentName: req.params.id });
+
+        if (!user) {
+            return res.json("Invalid User").status(404);
+        }
+        if (user) {
+            res.json({
+                message: "success",
+                user,
+                status: 201,
+            });
+        }
+    } catch (error) {
+    }
+});
+
 module.exports = router;
