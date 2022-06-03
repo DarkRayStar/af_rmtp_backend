@@ -102,4 +102,28 @@ Router.get('/download/:id', async (req, res) => {
     }
 });
 
+Router.post("/researchSubmission", async (req, res) => {
+    try {
+
+        const groups = req.body.theGroup;
+
+        const group = await StuSubmission.find({
+            groupname: groups
+        })
+
+        if (group) {
+            res.json({ group })
+        }
+        else {
+            return res.json("Invalid User").status(401);
+        }
+
+    } catch (error) {
+        // res.status(500).send({ message: "Internal Server Error" });
+    }
+
+});
+
+
+
 module.exports = Router;

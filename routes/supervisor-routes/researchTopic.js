@@ -53,4 +53,26 @@ router.route('/update/:id').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.post("/researchTopics", async (req, res) => {
+    try {
+
+        const groups = req.body.theGroup;
+
+        const group = await ResearchTopic.find({
+            groupName: groups
+        })
+
+        if (group) {
+            res.json({ group })
+        }
+        else {
+            return res.json("Invalid User").status(401);
+        }
+
+    } catch (error) {
+        // res.status(500).send({ message: "Internal Server Error" });
+    }
+
+});
+
 module.exports = router;
