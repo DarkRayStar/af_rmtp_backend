@@ -7,7 +7,7 @@ let Topic = require("../../models/supervisor-models/researchTopic.model");
 router.route("/").get((req, res) => {
   Group.find()
     .then((groups) => res.json(groups))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(201).json("Error: " + err));
 
   // nonGroupMember.find()
   //     .then(nonGroupMembers => res.json(nonGroupMembers))
@@ -67,12 +67,12 @@ router.route("/:id").get((req, res) => {
 router.post("/loggedUser", async (req, res) => {
   try {
     const user = await Group.findOne({ groupleader: req.body.stdID });
-    console.log("aaaa", req.body.stdID);
-    console.log("bbbb", user.groupname);
-    if (!user) {
-      // return res.status(401).send({ message: "Invalid Email or Password" });
-      return res.json("Invalid User").status(401);
-    }
+    // console.log("aaaa", req.body.stdID);
+    // console.log("bbbb", user.groupname);
+    // if (!user) {
+    //   // return res.status(401).send({ message: "Invalid Email or Password" });
+    //   return res.status(201).json("Error")
+    // }
     // console.log('1',user);
     if (user) {
       res.json({
@@ -179,6 +179,7 @@ router.route("/update/topic").post((req, res) => {
     { new: true },
     (err, doc) => {
       if (err) {
+        res.status(201).json('Error: ' + err);
         console.log("Something wrong when updating data!");
       }
 
@@ -191,6 +192,7 @@ router.route("/update/topic").post((req, res) => {
     { new: true },
     (err, doc) => {
       if (err) {
+        res.status(201).json('Error: ' + err);
         console.log("Something wrong when updating data!");
       }
 
@@ -213,7 +215,10 @@ router.route("/update/cosupervisor").post((req, res) => {
     { new: true },
     (err, doc) => {
       if (err) {
+        res.status(201).json('Error: ' + err);
         console.log("Something wrong when updating data!");
+      } else {
+        res.status(200);
       }
 
       // console.log(doc);
@@ -235,6 +240,7 @@ router.route("/update/supervisor").post((req, res) => {
     { new: true },
     (err, doc) => {
       if (err) {
+        res.status(201).json('Error: ' + err);
         console.log("Something wrong when updating data!");
       }
       // console.log(doc);

@@ -4,7 +4,7 @@ let ResearchTopic = require('../../models/supervisor-models/researchTopic.model'
 router.route('/').get((req, res) => {
     ResearchTopic.find()
         .then(researchTopics => res.json(researchTopics))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .catch(err => res.status(201).json('Error: ' + err));
 });
 
 router.route('/add').post((req, res) => {
@@ -43,7 +43,7 @@ router.route('/update/:id').post((req, res) => {
             researchTopics.topic = req.body.topic;
             researchTopics.groupName = req.body.groupName;
             researchTopics.state = req.body.state;
-            researchTopics.csState = req.body.csState;
+            // researchTopics.csState = req.body.csState;
             // researchField.researchField = req.body.researchField;
 
             researchTopics.save()
