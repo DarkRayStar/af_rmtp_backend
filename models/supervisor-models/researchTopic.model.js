@@ -4,11 +4,9 @@ const Schema = mongoose.Schema;
 
 const researchTopicSchema = new Schema({
   groupName: { type: String, required: true, unique: true },
-  topic: { type: String, unique: true },
+  topic: { type: String },
   state: { type: String },
   csState: { type: String },
-  // researchField: { type: String }
-  //marks need to add
 }, {
   timestamps: true,
 });
