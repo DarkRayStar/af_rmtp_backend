@@ -21,8 +21,6 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
 
-const exercisesRouter = require('./routes/exercises');
-const usersRouter = require('./routes/users');
 const adminFileUploadRouter = require('./routes/admin-routes/adminFile');
 const adminSubmissionRouter = require('./routes/admin-routes/submissionType');
 const fileRoute = require('./routes/admin-routes/adminFile');
@@ -40,8 +38,7 @@ const employeeLoginRoute = require('./routes/userManagement-routes/employeeLogin
 const studentPasswordResetRoute = require('./routes/userManagement-routes/passwordReset/passwordReset');
 const employeePasswordResetRoute = require('./routes/userManagement-routes/passwordReset/empPasswordReset');
 
-app.use('/exercises', exercisesRouter);
-app.use('/users', usersRouter);
+
 app.use('/admin', adminFileUploadRouter);
 app.use('/admin/submissionType', adminSubmissionRouter);
 
