@@ -5,42 +5,44 @@ const Joi = require("joi");
 
 router.post("/", async (req, res) => {
 	try {
+		//calling validate method
 		const { error } = validate(req.body);
 		if (error) {
 			return res.status(400).send({ message: error.details[0].message });
-			// return res.json('invalid password! (Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters)').status(400);
 		}
 
+		//check email address valid or not
 		const user = await User.findOne({ email: req.body.email });
 		if (!user) {
-			// return res.status(401).send({ message: "Invalid Email or Password" });
-			return res.json('Invalid Email or Password!').status(401);
+			return res.json('Login Failed. Please re-check your credentials.').status(401);
 		}
 
+		//compare Password related to given email
 		const validPassword = await bcrypt.compare(
 			req.body.password,
 			user.password
 		);
 		if (!validPassword) {
-			//return res.status(401).send({ message: "Invalid Email or Password" });
-			return res.json("Invalid Email or Password").status(401);
+			return res.json("Login Failed. Please re-check your credentials.").status(401);
 		}
 
+		//Both password and email are true then display login success message
 		if (validPassword && user) {
 			const token = user.generateAuthToken();
 			res.json({
-			  message: "logged in successfully",
-			  token,
-			  user,
-			  status:200
+				message: "logged in successfully",
+				token,
+				user,
+				status: 200
 			});
-		  }
+		}
 
 	} catch (error) {
 		res.status(500).send({ message: "Internal Server Error" });
 	}
 });
 
+//validate method for required all fields (email and password)
 const validate = (data) => {
 	const schema = Joi.object({
 		email: Joi.string().email().required().label("Email"),

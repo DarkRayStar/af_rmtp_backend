@@ -6,9 +6,6 @@ const researchTopicSchema = new Schema({
   topic: { type: String },
   groupName: { type: String, required: true, unique: true },
   state: { type: String },
-  // csState: { type: String },
-  // researchField: { type: String }
-  //marks need to add
 }, {
   timestamps: true,
 });
